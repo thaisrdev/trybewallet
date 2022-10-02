@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
@@ -7,8 +8,8 @@ class Header extends Component {
     return (
       <div>
         <p data-testid="email-field">{ email }</p>
-        <p data-testid="total-field">DESPESA TOTAL, inicialmente renderiza o valor 0.</p>
-        <p ata-testid="header-currency-field">BRL</p>
+        <p data-testid="total-field">0</p>
+        <p data-testid="header-currency-field">BRL</p>
       </div>
     );
   }
