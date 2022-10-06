@@ -1,11 +1,13 @@
+import { GET_EMAIL } from '../../components/actionTypes';
+
 const INITIAL_STATE = {
   email: '',
 };
 
 function user(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case 'LOGIN_DATA':
-    return { ...state, email: action.state };
+  case GET_EMAIL:
+    return { ...state, email: action.payload };
   default:
     return state;
   }

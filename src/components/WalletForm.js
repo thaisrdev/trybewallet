@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-// import getCurrencies from './api';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getApi } from '../redux/actions';
 
 class WalletForm extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(getApi());
+  }
+
   render() {
+    const { currencies } = this.props;
     return (
       <div>
         <label htmlFor="value-input">
@@ -25,11 +33,9 @@ class WalletForm extends Component {
 
         <label htmlFor="currency-input">
           <select data-testid="currency-input">
-            {/* Um campo para selecionar em qual moeda será registrada a despesa.
-            As options devem ser preenchidas pelo valor da chave currencies do estado global.
-            Os valores da chave currencies no estado global devem ser puxados através de uma requisição à API no endpoint https://economia.awesomeapi.com.br/json/all;
-            Remova, das informações trazidas pela API, a opção 'USDT';
-            A chave currencies do estado global deve ser um array. */}
+            { currencies.map((element) => (
+              <option key={ element }>{element}</option>
+            ))}
           </select>
         </label>
 
@@ -60,4 +66,12 @@ class WalletForm extends Component {
   }
 }
 
-export default WalletForm;
+const mapStateToProps = (state) => ({
+  currencies: state.wallet.currencies,
+});
+
+WalletForm.propTypes = {
+  dispatch: PropTypes.func,
+}.isRequired;
+
+export default connect(mapStateToProps)(WalletForm);
