@@ -1,4 +1,4 @@
-import { GET_API } from '../../components/actionTypes';
+import { GET_API, GET_EXPENSES } from '../../components/actionTypes';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INICIAL_STATE = {
   currencies: [], // array de string
@@ -10,10 +10,25 @@ const INICIAL_STATE = {
 const wallet = (state = INICIAL_STATE, action) => {
   switch (action.type) {
   case GET_API:
+    console.log(action.payload);
     return {
       ...state,
       currencies: Object.keys(action.payload)
         .filter((element) => element !== 'USDT') };
+  case GET_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses,
+        {
+          id: state.expenses.length,
+          value: action.payload.value,
+          description: action.payload.description,
+          currency: action.payload.currency,
+          method: action.payload.method,
+          tag: action.payload.tag,
+          exchangeRates: action.payload.exchangeRates,
+        }],
+    };
   default:
     return state;
   }
