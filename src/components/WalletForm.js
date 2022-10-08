@@ -31,6 +31,7 @@ class WalletForm extends Component {
     const { id, value, description, currency, method, tag } = this.state;
     const request = await fetch('https://economia.awesomeapi.com.br/json/all');
     const requestJson = await request.json();
+    console.log('teste', requestJson);
     const objeto = {
       id,
       value,

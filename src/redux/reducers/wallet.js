@@ -10,12 +10,12 @@ const INICIAL_STATE = {
 const wallet = (state = INICIAL_STATE, action) => {
   switch (action.type) {
   case GET_API:
-    console.log(action.payload);
     return {
       ...state,
       currencies: Object.keys(action.payload)
         .filter((element) => element !== 'USDT') };
   case GET_EXPENSES:
+    console.log(action.payload);
     return {
       ...state,
       expenses: [...state.expenses,
