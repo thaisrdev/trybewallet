@@ -1,4 +1,5 @@
-import { GET_API, GET_EMAIL, GET_EXPENSES } from '../../components/actionTypes';
+import { GET_API, GET_EMAIL, GET_EXPENSES, DELETE_BUTTON }
+  from '../../components/actionTypes';
 
 export const loginAction = (payload) => ({ type: GET_EMAIL, payload });
 
@@ -13,3 +14,5 @@ export function getApi() {
     return dispatch(getCurrency(requestJson));
   };
 }
+
+export const deleteButton = (payload) => ({ type: DELETE_BUTTON, payload });

@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteButton } from '../redux/actions';
 
 class Table extends Component {
+  handleClick = ({ target }) => {
+    const { expenses, dispatch } = this.props;
+    // console.log(expenses);
+    console.log('oi', target.value);
+    const matchElement = expenses
+      .filter((element) => element.id !== Number(target.value));
+    console.log(matchElement);
+    dispatch(deleteButton(matchElement));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -46,6 +57,8 @@ class Table extends Component {
                 <button
                   data-testid="delete-btn"
                   type="button"
+                  value={ element.id }
+                  onClick={ (event) => this.handleClick(event) }
                 >
                   Excluir
                 </button>
@@ -74,6 +87,7 @@ Table.propTypes = {
     exchangeRates: PropTypes.shape({
     }).isRequired,
   })).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

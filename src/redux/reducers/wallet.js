@@ -1,4 +1,4 @@
-import { GET_API, GET_EXPENSES } from '../../components/actionTypes';
+import { GET_API, GET_EXPENSES, DELETE_BUTTON } from '../../components/actionTypes';
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INICIAL_STATE = {
   currencies: [], // array de string
@@ -28,6 +28,11 @@ const wallet = (state = INICIAL_STATE, action) => {
           tag: action.payload.tag,
           exchangeRates: action.payload.exchangeRates,
         }],
+    };
+  case DELETE_BUTTON:
+    return {
+      ...state,
+      expenses: action.payload,
     };
   default:
     return state;
