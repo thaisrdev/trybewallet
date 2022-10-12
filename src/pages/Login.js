@@ -38,6 +38,7 @@ class Login extends React.Component {
     const {
       email,
       disabled,
+      password,
     } = this.state;
     const {
       loginDispatch,
@@ -67,7 +68,9 @@ class Login extends React.Component {
         <Link to="/carteira">
           <button
             type="button"
+            data-testid="login-button"
             disabled={ disabled }
+            value={ password }
             onClick={ () => loginDispatch(this.state) }
           >
             Entrar
